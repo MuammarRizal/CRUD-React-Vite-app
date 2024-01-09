@@ -2,15 +2,24 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProductList from "./components/ProductList";
 import { Container, Row } from "react-bootstrap";
-import { useState } from "react";
-import { Products } from "./data/product";
+import { useEffect, useState } from "react";
 import FormCreateProduct from "./components/FormCreateProduct";
+import axios from "axios";
 
+// baru dimenit 44.09
 function App() {
-  const [products, setProducts] = useState(Products);
+  const [products, setProducts] = useState([]);
 
-  const getCreateProduct = (product) => {
-    setProducts([...products, { id: Math.floor(Math.random() * (9999 - 1000 + 1) + 1000), ...product }]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await axios.get("http://127.0.0.1:3001/products");
+      setProducts([...response.data]);
+    };
+    fetchProducts();
+  }, []);
+  const getCreateProduct = async (product) => {
+    const response = await axios.post("http://127.0.0.1:3001/products", product);
+    setProducts([...products, response.data]);
   };
 
   const onEditProduct = (id, data) => {
