@@ -1,0 +1,31 @@
+.keranjang-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keranjang {
+  margin-inline: 10px;
+}
+
+.tr {
+  transition: 1s;
+}
+
+.button-klik {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.bg-i {
+  background-color: red;
+}
+.bg-r {
+  background-color: green;
+}
+.p-en {
+  font-size: 1.9rem;
+  margin-right: 5px;
+}
